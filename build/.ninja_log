@@ -1,0 +1,19 @@
+# ninja log v7
+11	1014	8075224984292375	ReplayQt_autogen/timestamp	2c45eaf7baf3cd74
+11	1014	8075224984292375	ReplayQt_autogen/mocs_compilation.cpp	2c45eaf7baf3cd74
+11	1014	8075224984292375	D:/Dev/Replay/build/ReplayQt_autogen/timestamp	2c45eaf7baf3cd74
+11	1014	8075224984292375	D:/Dev/Replay/build/ReplayQt_autogen/mocs_compilation.cpp	2c45eaf7baf3cd74
+1080	1138	8075194368102364	CMakeFiles/ReplayQt.dir/ReplayQt_autogen/mocs_compilation.cpp.obj	3beadb3240668fb5
+5	360	8075231069365451	build.ninja	fdbe38fbcf6d8fdd
+5	360	8075231069365451	D:/Dev/Replay/build/cmake_install.cmake	fdbe38fbcf6d8fdd
+1015	5495	8075224994311809	CMakeFiles/ReplayQt.dir/main.cpp.obj	b1525bed43f7a46f
+5496	5826	8075225039192722	ReplayQt.exe	2ce652bd33726269
+1016	1215	8075224994311809	CMakeFiles/ReplayQt.dir/app.rc.obj	a09a240f0aa25932
+11	1054	8075231071056169	ReplayQt_autogen/timestamp	2c45eaf7baf3cd74
+11	1054	8075231071056169	ReplayQt_autogen/mocs_compilation.cpp	2c45eaf7baf3cd74
+11	1054	8075231071056169	D:/Dev/Replay/build/ReplayQt_autogen/timestamp	2c45eaf7baf3cd74
+11	1054	8075231071056169	D:/Dev/Replay/build/ReplayQt_autogen/mocs_compilation.cpp	2c45eaf7baf3cd74
+1055	1117	8075231081551110	CMakeFiles/ReplayQt.dir/ReplayQt_autogen/mocs_compilation.cpp.obj	48c090379d601379
+1057	1129	8075231081551110	CMakeFiles/ReplayQt.dir/app.rc.obj	5f4825d948f396e0
+1056	5548	8075231081551110	CMakeFiles/ReplayQt.dir/main.cpp.obj	3f8d624abfc570f9
+5548	5930	8075231126338028	ReplayQt.exe	2ce652bd33726269
