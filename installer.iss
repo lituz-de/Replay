@@ -1,5 +1,9 @@
+; Use version passed from command line, fallback to v0.1 if missing
+#ifndef MyAppVersion
+  #define MyAppVersion "v0.1"
+#endif
+
 #define MyAppName "Replay"
-#define MyAppVersion "v1.0.1"
 #define MyAppPublisher "LiTuz"
 #define MyAppURL "https://github.com/lituz-de/Replay"
 #define MyAppExeName "ReplayQt.exe"
@@ -29,7 +33,6 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-; Grab everything inside the dist directory
 Source: "dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]

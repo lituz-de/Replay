@@ -1,3 +1,6 @@
 -------------------------------------------
 type        ./build.sh           to compile
 -------------------------------------------
+
+The build.shh file will automatically ask and update the version of teh
+app in both main.cpp and installer.iss so its like run once and you have versions updated!

@@ -98,37 +98,56 @@ static QString vkToString(DWORD vk) {
 // Dynamic Theme Manager
 // -----------------------------------------------------------------------------
 static void applyTheme(bool isDark) {
+    qApp->setStyle(QStyleFactory::create("Fusion"));
+
+    QPalette palette;
+
     if (isDark) {
-        qApp->setStyle(QStyleFactory::create("Fusion"));
+        palette.setColor(QPalette::Window, QColor(45, 45, 45));
+        palette.setColor(QPalette::WindowText, Qt::white);
+        palette.setColor(QPalette::Base, QColor(25, 25, 25));
+        palette.setColor(QPalette::AlternateBase, QColor(35, 35, 35));
+        palette.setColor(QPalette::ToolTipBase, Qt::white);
+        palette.setColor(QPalette::ToolTipText, Qt::white);
+        palette.setColor(QPalette::Text, Qt::white);
+        palette.setColor(QPalette::Button, QColor(53, 53, 53));
+        palette.setColor(QPalette::ButtonText, Qt::white);
+        palette.setColor(QPalette::BrightText, Qt::red);
+        palette.setColor(QPalette::Link, QColor(100, 181, 246));
+        palette.setColor(QPalette::Highlight, QColor(42, 130, 218));
+        palette.setColor(QPalette::HighlightedText, Qt::white);
 
-        QPalette darkPalette;
-        darkPalette.setColor(QPalette::Window, QColor(45, 45, 45));
-        darkPalette.setColor(QPalette::WindowText, Qt::white);
-        darkPalette.setColor(QPalette::Base, QColor(25, 25, 25));
-        darkPalette.setColor(QPalette::AlternateBase, QColor(35, 35, 35));
-        darkPalette.setColor(QPalette::ToolTipBase, Qt::white);
-        darkPalette.setColor(QPalette::ToolTipText, Qt::white);
-        darkPalette.setColor(QPalette::Text, Qt::white);
-        darkPalette.setColor(QPalette::Button, QColor(53, 53, 53));
-        darkPalette.setColor(QPalette::ButtonText, Qt::white);
-        darkPalette.setColor(QPalette::BrightText, Qt::red);
-        darkPalette.setColor(QPalette::Link, QColor(100, 181, 246));
-        darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
-        darkPalette.setColor(QPalette::HighlightedText, Qt::white);
-
-        // Disabled state styling
-        darkPalette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(110, 110, 110));
-        darkPalette.setColor(QPalette::Disabled, QPalette::Text, QColor(110, 110, 110));
-        darkPalette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(110, 110, 110));
-        darkPalette.setColor(QPalette::Disabled, QPalette::Highlight, QColor(80, 80, 80));
-        darkPalette.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(110, 110, 110));
-
-        qApp->setPalette(darkPalette);
+        // Disabled states (Dark)
+        palette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(110, 110, 110));
+        palette.setColor(QPalette::Disabled, QPalette::Text, QColor(110, 110, 110));
+        palette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(110, 110, 110));
+        palette.setColor(QPalette::Disabled, QPalette::Highlight, QColor(80, 80, 80));
+        palette.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(110, 110, 110));
     } else {
-        // Reset back to system/standard light palette
-        qApp->setStyle(QStyleFactory::create("Fusion"));
-        qApp->setPalette(qApp->style()->standardPalette());
+        // Explicit Light Mode Palette (Bypasses Windows OS Dark Mode)
+        palette.setColor(QPalette::Window, QColor(240, 240, 240));
+        palette.setColor(QPalette::WindowText, Qt::black);
+        palette.setColor(QPalette::Base, Qt::white);
+        palette.setColor(QPalette::AlternateBase, QColor(245, 245, 245));
+        palette.setColor(QPalette::ToolTipBase, Qt::white);
+        palette.setColor(QPalette::ToolTipText, Qt::black);
+        palette.setColor(QPalette::Text, Qt::black);
+        palette.setColor(QPalette::Button, QColor(230, 230, 230));
+        palette.setColor(QPalette::ButtonText, Qt::black);
+        palette.setColor(QPalette::BrightText, Qt::red);
+        palette.setColor(QPalette::Link, QColor(0, 122, 255));
+        palette.setColor(QPalette::Highlight, QColor(0, 120, 215));
+        palette.setColor(QPalette::HighlightedText, Qt::white);
+
+        // Disabled states (Light)
+        palette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(160, 160, 160));
+        palette.setColor(QPalette::Disabled, QPalette::Text, QColor(160, 160, 160));
+        palette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(160, 160, 160));
+        palette.setColor(QPalette::Disabled, QPalette::Highlight, QColor(210, 210, 210));
+        palette.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(160, 160, 160));
     }
+
+    qApp->setPalette(palette);
 }
 
 // -----------------------------------------------------------------------------
@@ -321,7 +340,7 @@ public:
         m_btnPlay   = new QPushButton(this);
         m_btnSave   = new QPushButton("Save...", this);
         m_btnLoad   = new QPushButton("Load...", this);
-        m_btnTheme  = new QPushButton(this); // Theme Toggle Button
+        m_btnTheme  = new QPushButton(this);
 
         updateButtonLabels();
         updateThemeButtonLabel();
@@ -366,7 +385,7 @@ public:
     }
 
     void updateThemeButtonLabel() {
-        m_btnTheme->setText(m_isDarkMode ? "☀️ Light" : "🌙 Dark");
+        m_btnTheme->setText(m_isDarkMode ? "🌙 Dark" : "☀️ Light");
     }
 
 private:
@@ -476,7 +495,6 @@ public slots:
         QThread *thread = new QThread();
         PlaybackWorker *worker = new PlaybackWorker(g_events);
         worker->moveToThread(thread);
-
         connect(thread, &QThread::started, worker, &PlaybackWorker::process);
         connect(worker, &PlaybackWorker::finished, thread, &QThread::quit);
         connect(worker, &PlaybackWorker::finished, worker, &QObject::deleteLater);
