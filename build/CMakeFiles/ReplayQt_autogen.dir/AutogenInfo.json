@@ -274,7 +274,7 @@
 	"MOC_COMPILATION_FILE" : "D:/Dev/Replay/build/ReplayQt_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
-		"APP_VERSION=\"1.0.0stable\"",
+		"APP_VERSION=\"v1.0.1\"",
 		"MINGW_HAS_SECURE_API=1",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",

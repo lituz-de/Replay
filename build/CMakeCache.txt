@@ -17,7 +17,7 @@
 //Value given to the VERSION option of the most recent project()
 // command with project name <PROJECT-NAME>, if any. Component
 // values live in <PROJECT-NAME>_VERSION_{MAJOR,MINOR,PATCH,TWEAK}.
-APP_VERSION:UNINITIALIZED=1.0.0stable
+APP_VERSION:UNINITIALIZED=v1.0.1
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=C:/msys64/ucrt64/bin/addr2line.exe

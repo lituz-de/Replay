@@ -45,7 +45,7 @@ cmake_ninja_workdir = D$:/Dev/Replay/build/
 build cmake_object_order_depends_target_ReplayQt: phony || ReplayQt_autogen ReplayQt_autogen/mocs_compilation.cpp ReplayQt_autogen/timestamp ReplayQt_autogen_timestamp_deps
 
 build CMakeFiles/ReplayQt.dir/ReplayQt_autogen/mocs_compilation.cpp.obj: CXX_COMPILER__ReplayQt_unscanned_ D$:/Dev/Replay/build/ReplayQt_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_ReplayQt
-  DEFINES = -DAPP_VERSION=\"1.0.0stable\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEFINES = -DAPP_VERSION=\"v1.0.1\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\ReplayQt.dir\ReplayQt_autogen\mocs_compilation.cpp.obj.d
   FLAGS = -std=gnu++17
   INCLUDES = -ID:/Dev/Replay/build/ReplayQt_autogen/include -isystem C:/msys64/ucrt64/include/qt6/QtWidgets -isystem C:/msys64/ucrt64/include/qt6 -isystem C:/msys64/ucrt64/include/qt6/QtCore -isystem C:/msys64/ucrt64/share/qt6/mkspecs/win32-g++ -isystem C:/msys64/ucrt64/include/qt6/QtGui
@@ -54,7 +54,7 @@ build CMakeFiles/ReplayQt.dir/ReplayQt_autogen/mocs_compilation.cpp.obj: CXX_COM
   TARGET_SUPPORT_DIR = CMakeFiles\ReplayQt.dir
 
 build CMakeFiles/ReplayQt.dir/main.cpp.obj: CXX_COMPILER__ReplayQt_unscanned_ D$:/Dev/Replay/main.cpp || cmake_object_order_depends_target_ReplayQt
-  DEFINES = -DAPP_VERSION=\"1.0.0stable\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEFINES = -DAPP_VERSION=\"v1.0.1\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\ReplayQt.dir\main.cpp.obj.d
   FLAGS = -std=gnu++17
   INCLUDES = -ID:/Dev/Replay/build/ReplayQt_autogen/include -isystem C:/msys64/ucrt64/include/qt6/QtWidgets -isystem C:/msys64/ucrt64/include/qt6 -isystem C:/msys64/ucrt64/include/qt6/QtCore -isystem C:/msys64/ucrt64/share/qt6/mkspecs/win32-g++ -isystem C:/msys64/ucrt64/include/qt6/QtGui
@@ -63,7 +63,7 @@ build CMakeFiles/ReplayQt.dir/main.cpp.obj: CXX_COMPILER__ReplayQt_unscanned_ D$
   TARGET_SUPPORT_DIR = CMakeFiles\ReplayQt.dir
 
 build CMakeFiles/ReplayQt.dir/app.rc.obj: RC_COMPILER__ReplayQt_unscanned_ D$:/Dev/Replay/app.rc || cmake_object_order_depends_target_ReplayQt
-  DEFINES = -DAPP_VERSION=\"1.0.0stable\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEFINES = -DAPP_VERSION=\"v1.0.1\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\ReplayQt.dir\app.rc.obj.d
   INCLUDES = -I D:/Dev/Replay/build/ReplayQt_autogen/include -I C:/msys64/ucrt64/include/qt6/QtWidgets -I C:/msys64/ucrt64/include/qt6 -I C:/msys64/ucrt64/include/qt6/QtCore -I C:/msys64/ucrt64/share/qt6/mkspecs/win32-g++ -I C:/msys64/ucrt64/include/qt6/QtGui -I C:/msys64/ucrt64/include
   OBJECT_DIR = CMakeFiles\ReplayQt.dir

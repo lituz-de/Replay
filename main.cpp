@@ -95,34 +95,40 @@ static QString vkToString(DWORD vk) {
 }
 
 // -----------------------------------------------------------------------------
-// Dark Mode Setup
+// Dynamic Theme Manager
 // -----------------------------------------------------------------------------
-static void applyDarkMode(QApplication &app) {
-    app.setStyle(QStyleFactory::create("Fusion"));
+static void applyTheme(bool isDark) {
+    if (isDark) {
+        qApp->setStyle(QStyleFactory::create("Fusion"));
 
-    QPalette darkPalette;
-    darkPalette.setColor(QPalette::Window, QColor(45, 45, 45));
-    darkPalette.setColor(QPalette::WindowText, Qt::white);
-    darkPalette.setColor(QPalette::Base, QColor(25, 25, 25));
-    darkPalette.setColor(QPalette::AlternateBase, QColor(35, 35, 35));
-    darkPalette.setColor(QPalette::ToolTipBase, Qt::white);
-    darkPalette.setColor(QPalette::ToolTipText, Qt::white);
-    darkPalette.setColor(QPalette::Text, Qt::white);
-    darkPalette.setColor(QPalette::Button, QColor(53, 53, 53));
-    darkPalette.setColor(QPalette::ButtonText, Qt::white);
-    darkPalette.setColor(QPalette::BrightText, Qt::red);
-    darkPalette.setColor(QPalette::Link, QColor(100, 181, 246));
-    darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
-    darkPalette.setColor(QPalette::HighlightedText, Qt::white);
+        QPalette darkPalette;
+        darkPalette.setColor(QPalette::Window, QColor(45, 45, 45));
+        darkPalette.setColor(QPalette::WindowText, Qt::white);
+        darkPalette.setColor(QPalette::Base, QColor(25, 25, 25));
+        darkPalette.setColor(QPalette::AlternateBase, QColor(35, 35, 35));
+        darkPalette.setColor(QPalette::ToolTipBase, Qt::white);
+        darkPalette.setColor(QPalette::ToolTipText, Qt::white);
+        darkPalette.setColor(QPalette::Text, Qt::white);
+        darkPalette.setColor(QPalette::Button, QColor(53, 53, 53));
+        darkPalette.setColor(QPalette::ButtonText, Qt::white);
+        darkPalette.setColor(QPalette::BrightText, Qt::red);
+        darkPalette.setColor(QPalette::Link, QColor(100, 181, 246));
+        darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
+        darkPalette.setColor(QPalette::HighlightedText, Qt::white);
 
-    // Disabled states
-    darkPalette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(110, 110, 110));
-    darkPalette.setColor(QPalette::Disabled, QPalette::Text, QColor(110, 110, 110));
-    darkPalette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(110, 110, 110));
-    darkPalette.setColor(QPalette::Disabled, QPalette::Highlight, QColor(80, 80, 80));
-    darkPalette.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(110, 110, 110));
+        // Disabled state styling
+        darkPalette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(110, 110, 110));
+        darkPalette.setColor(QPalette::Disabled, QPalette::Text, QColor(110, 110, 110));
+        darkPalette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(110, 110, 110));
+        darkPalette.setColor(QPalette::Disabled, QPalette::Highlight, QColor(80, 80, 80));
+        darkPalette.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(110, 110, 110));
 
-    app.setPalette(darkPalette);
+        qApp->setPalette(darkPalette);
+    } else {
+        // Reset back to system/standard light palette
+        qApp->setStyle(QStyleFactory::create("Fusion"));
+        qApp->setPalette(qApp->style()->standardPalette());
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -154,7 +160,7 @@ public:
         layout->addLayout(abortLayout);
 
         m_infoLabel = new QLabel("Click a button then press a key to rebind.", this);
-        m_infoLabel->setStyleSheet("color: #aaaaaa; font-size: 11px;");
+        m_infoLabel->setStyleSheet("font-size: 11px;");
         layout->addWidget(m_infoLabel);
 
         QHBoxLayout *btnBox = new QHBoxLayout();
@@ -297,7 +303,7 @@ public:
     MainWindow(QWidget *parent = nullptr) : QMainWindow(parent) {
         g_mainWindow = this;
         setWindowTitle(QString("%1 %2").arg(APP_NAME, APP_VERSION));
-        resize(520, 380);
+        resize(560, 380);
 
         setupMenuBar();
 
@@ -315,8 +321,10 @@ public:
         m_btnPlay   = new QPushButton(this);
         m_btnSave   = new QPushButton("Save...", this);
         m_btnLoad   = new QPushButton("Load...", this);
+        m_btnTheme  = new QPushButton(this); // Theme Toggle Button
 
         updateButtonLabels();
+        updateThemeButtonLabel();
 
         m_btnStop->setEnabled(false);
         m_btnPlay->setEnabled(false);
@@ -327,6 +335,7 @@ public:
         btnLayout->addWidget(m_btnPlay);
         btnLayout->addWidget(m_btnSave);
         btnLayout->addWidget(m_btnLoad);
+        btnLayout->addWidget(m_btnTheme);
         mainLayout->addLayout(btnLayout);
 
         m_logWidget = new QListWidget(this);
@@ -337,6 +346,7 @@ public:
         connect(m_btnPlay,   &QPushButton::clicked, this, &MainWindow::startPlayback);
         connect(m_btnSave,   &QPushButton::clicked, this, &MainWindow::saveMacro);
         connect(m_btnLoad,   &QPushButton::clicked, this, &MainWindow::loadMacro);
+        connect(m_btnTheme,  &QPushButton::clicked, this, &MainWindow::toggleTheme);
 
         logMessage("[System] Qt Replay Engine Initialized.");
     }
@@ -355,6 +365,10 @@ public:
         m_btnPlay->setText(QString("Play (%1)").arg(vkToString(g_abortHotkey.load())));
     }
 
+    void updateThemeButtonLabel() {
+        m_btnTheme->setText(m_isDarkMode ? "☀️ Light" : "🌙 Dark");
+    }
+
 private:
     void setupMenuBar() {
         QMenuBar *mb = menuBar();
@@ -364,6 +378,9 @@ private:
         QAction *hotkeyAction = settingsMenu->addAction("Hotkey Settings...");
         connect(hotkeyAction, &QAction::triggered, this, &MainWindow::openHotkeySettings);
 
+        QAction *themeAction = settingsMenu->addAction("Toggle Theme");
+        connect(themeAction, &QAction::triggered, this, &MainWindow::toggleTheme);
+
         // Help Menu
         QMenu *helpMenu = mb->addMenu("&Help");
         QAction *creditsAction = helpMenu->addAction("Credits");
@@ -371,6 +388,13 @@ private:
     }
 
 public slots:
+    void toggleTheme() {
+        m_isDarkMode = !m_isDarkMode;
+        applyTheme(m_isDarkMode);
+        updateThemeButtonLabel();
+        logMessage(QString("[UI] Switched to %1 theme.").arg(m_isDarkMode ? "Dark" : "Light"));
+    }
+
     void openHotkeySettings() {
         HotkeyDialog dialog(this);
         if (dialog.exec() == QDialog::Accepted) {
@@ -383,12 +407,12 @@ public slots:
 
     void showCredits() {
         QString text = QString(
-            "<h2 style='margin-bottom: 2px;'>%1 <span style='font-size: 13px; font-weight: normal; color: #aaaaaa;'>%2</span></h2>"
-            "<p style='margin-top: 4px; margin-bottom: 8px; color: #cccccc;'>A lightweight low-level mouse and keyboard input recording and playback engine for Windows.</p>"
+            "<h2 style='margin-bottom: 2px;'>%1 <span style='font-size: 13px; font-weight: normal;'>%2</span></h2>"
+            "<p style='margin-top: 4px; margin-bottom: 8px;'>A lightweight low-level mouse and keyboard input recording and playback engine for Windows.</p>"
             "<hr>"
             "<p style='margin-top: 6px; margin-bottom: 6px;'>Qt 6 - (GNU LGPL v3 License)</p>"
             "<hr>"
-            "<p style='margin-top: 6px; margin-bottom: 2px;'><a href='https://www.github.com/lituz-de/Replay' style='color: #64b5f6;'>www.github.com/lituz-de/Replay</a></p>"
+            "<p style='margin-top: 6px; margin-bottom: 2px;'><a href='https://www.github.com/lituz-de/Replay'>www.github.com/lituz-de/Replay</a></p>"
             "<p style='margin-top: 0px;'>MIT License</p>"
         ).arg(APP_NAME, APP_VERSION);
 
@@ -518,7 +542,9 @@ private:
     QPushButton *m_btnPlay;
     QPushButton *m_btnSave;
     QPushButton *m_btnLoad;
+    QPushButton *m_btnTheme;
     QListWidget *m_logWidget;
+    bool m_isDarkMode = true;
 };
 
 // -----------------------------------------------------------------------------
@@ -601,8 +627,8 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam) {
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    // Apply dark mode theme
-    applyDarkMode(app);
+    // Default to dark theme on startup
+    applyTheme(true);
 
     // Set window & taskbar icon
     app.setWindowIcon(QIcon("app.ico"));

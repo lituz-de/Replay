@@ -345,7 +345,7 @@
 #define __INTPTR_TYPE__ long long int
 #define __UINT16_TYPE__ short unsigned int
 #define __WCHAR_TYPE__ short unsigned int
-#define APP_VERSION "1.0.0stable"
+#define APP_VERSION "v1.0.1"
 #define __pic__ 1
 #define __UINTPTR_MAX__ 0xffffffffffffffffULL
 #define __INT_FAST64_WIDTH__ 64
