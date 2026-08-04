@@ -1,5 +1,5 @@
 #define MyAppName "Replay"
-#define MyAppVersion "v0.1"
+#define MyAppVersion "v1.0.1"
 #define MyAppPublisher "LiTuz"
 #define MyAppURL "https://github.com/lituz-de/Replay"
 #define MyAppExeName "ReplayQt.exe"
