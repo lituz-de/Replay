@@ -33,7 +33,8 @@
 ## Screenshot
 
 <img width="559" height="408" alt="ss2" src="https://github.com/user-attachments/assets/d28a80c6-cf49-4da2-b8a1-acd9239c373e" />
-<img width="521" height="414" alt="ss1" src="https://github.com/user-attachments/assets/91bba356-654e-473e-a592-24ee78ef7783" />
+<img width="559" height="408" alt="ss1" src="https://github.com/user-attachments/assets/76118a01-df90-4cb3-8176-f9e2cfdbf43b" />
+
 
 
 ## Getting Started
