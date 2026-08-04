@@ -54,8 +54,7 @@ git clone https://github.com/lituz-de/Replay.git
 cd Replay
 
 # configure & build (adjust to your build system, e.g. qmake/CMake)
-qmake Replay.pro
-mingw32-make
+./build.sh
 ```
 
 ### Run
