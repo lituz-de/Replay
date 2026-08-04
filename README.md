@@ -1,6 +1,6 @@
-<p align="center">
-  <img src="replay_icon_1024_clean.png" width="120" alt="Replay logo">
-</p>
+<img width="1024" height="1024" alt="replay_icon_1024_clean(1)" src="https://github.com/user-attachments/assets/4da78b59-ed32-4a84-a0b0-6777c8fbe851" />
+
+
 
 <h1 align="center">Replay</h1>
 
@@ -31,9 +31,9 @@
 
 ## Screenshot
 
-<p align="center">
-  <img src="screenshot.png" width="500" alt="Replay Engine UI">
-</p>
+<img width="559" height="408" alt="ss2" src="https://github.com/user-attachments/assets/d28a80c6-cf49-4da2-b8a1-acd9239c373e" />
+<img width="521" height="414" alt="ss1" src="https://github.com/user-attachments/assets/91bba356-654e-473e-a592-24ee78ef7783" />
+
 
 ## Getting Started
 
